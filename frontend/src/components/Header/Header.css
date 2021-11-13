@@ -1,0 +1,35 @@
+header {
+    height: 100px;
+    width: 100%;
+    padding: 16px 32px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    background-image: url(../../assets/logo/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60px;
+    width: 60px;
+}
+
+header .menu {
+    color: var(--primary-light-alpha);
+    font-size: 24px;
+}
+
+@media (min-width: 600px) {
+    header {
+        height: 120px;
+        padding: 32px;
+    }
+    
+    header .logo {
+        height: 80px;
+        width: 80px;
+    }
+}

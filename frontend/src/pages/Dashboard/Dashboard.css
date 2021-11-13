@@ -1,0 +1,51 @@
+.Dashboard p.greeting{
+    text-align: left;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-light-alpha);
+    padding: 24px 0;
+    font-family: 'Lato', sans-serif;
+}
+.Dashboard .dashboard_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 16px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 24px 0;
+}
+.Dashboard .dashboard_grid .dashboard_grid_coin {
+    background-color: var(--primary-dark-beta);
+    color: var(--primary-light-alpha);
+    padding: 16px;
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+.Dashboard .dashboard_grid .dashboard_grid_coin figure,
+.Dashboard .dashboard_grid .dashboard_grid_coin figure img {
+    height: 80px;
+    width: 80px;
+    display: block;
+    border-radius: 50%;
+}
+.Dashboard .dashboard_grid .dashboard_grid_coin .name_of_coin {
+    font-size: 16px;
+}
+.Dashboard .dashboard_grid .dashboard_grid_coin .balance {
+    font-size: 16px;
+}
+
+
+@media (min-width: 600px) {
+    .Dashboard .dashboard_grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px;
+    }
+}
