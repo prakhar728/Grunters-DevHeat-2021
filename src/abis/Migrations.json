@@ -74,7 +74,7 @@
   "sourceMap": "34:480:9:-;;;123:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;123:50:9;158:10;150:5;;:18;;;;;;;;;;;;;;;;;;34:480;;;;;;",
   "deployedSourceMap": "34:480:9:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:480:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;347:165;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;347:165:9;;;;;;;;;;;;;;;;;;;:::i;:::-;;82:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;58:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;240:103;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;240:103:9;;;;;;;;;;;;;;;;;:::i;:::-;;347:165;223:5;;;;;;;;;;;209:19;;:10;:19;;;205:26;;;409:19;442:11;409:45;;460:8;:21;;;482:24;;460:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;460:47:9;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;460:47:9;;;;230:1;205:26;347:165;:::o;82:36::-;;;;:::o;58:20::-;;;;;;;;;;;;;:::o;240:103::-;223:5;;;;;;;;;;;209:19;;:10;:19;;;205:26;;;329:9;302:24;:36;;;;205:26;240:103;:::o",
   "source": "pragma solidity >=0.4.21 <0.6.0;\n\ncontract Migrations {\n  address public owner;\n  uint public last_completed_migration;\n\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  modifier restricted() {\n    if (msg.sender == owner) _;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n\n  function upgrade(address new_address) public restricted {\n    Migrations upgraded = Migrations(new_address);\n    upgraded.setCompleted(last_completed_migration);\n  }\n}\n",
-  "sourcePath": "/home/prakharojha/Desktop/ME/Grunters-DevHeat-2021/src/contracts/Migrations.sol",
+  "sourcePath": "/home/prakharojha/Desktop/Grunters-DevHeat-2021/src/contracts/Migrations.sol",
   "ast": {
     "absolutePath": "project:/src/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -1475,8 +1475,8 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0x053Ee65933913227C7257232c53292c0Bc15bB13",
-      "transactionHash": "0x5fdf1268f2a6a5ddcb745e3885fccf46827b5ae88d2ace5ef0a4571807d55f93"
+      "address": "0xFb31F49b9bCc745350983909346737BDB7f5D769",
+      "transactionHash": "0xd8faa8ec342f091b578dfbd83d1668c2943acac0128cf7d5c084421b1d548771"
     },
     "5777": {
       "events": {},
@@ -1486,7 +1486,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-13T14:25:37.134Z",
+  "updatedAt": "2021-11-14T10:15:01.767Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

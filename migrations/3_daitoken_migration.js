@@ -6,7 +6,7 @@ module.exports = async function(deployer){
     const daitokenGet = await daitoken.deployed()
 
     await daitokenGet.mint(
-        '0xf45A9e3BD552578be8Ba1D1a71deEef72e55D90a',
+        '0xD219d8ed431d8b4962C4Ede6f44a75a3fB046C7E',
         '1000000000000000000000'
     )
 }
