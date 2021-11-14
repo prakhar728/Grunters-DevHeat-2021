@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import tehterURL from "../../assets/coins/tether.svg";
+import tetherURL from "../../assets/coins/tether.svg";
 import chainlinkURL from "../../assets/coins/chainlink.svg";
 import daiURL from "../../assets/coins/dai.svg";
 import binanceURL from "../../assets/coins/binance.svg";
@@ -26,7 +26,7 @@ const Dashboard = () => {
             id: 1,
             name: "Tether",
             notation: "USDT",
-            image: tehterURL,
+            image: tetherURL,
             balance: "12.45",
             history: []
         },
@@ -67,9 +67,9 @@ const Dashboard = () => {
                     <div className="dashboard_grid">
                         {database.map(data => (
                             <Link to={{
-                                pathname: `/wallet:${data.name}`,
+                                pathname: `/wallet:${data.notation}`,
                                 state: data
-                            }}  key={data.id}>
+                            }} key={data.id}>
                                 <div className="dashboard_grid_coin" key={data.id}>
                                     <figure>
                                         <img src={data.image} alt=""/>
