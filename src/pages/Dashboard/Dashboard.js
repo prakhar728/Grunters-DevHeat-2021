@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import tetherURL from "../../assets/coins/tether.svg";
 import chainlinkURL from "../../assets/coins/chainlink.svg";
 import daiURL from "../../assets/coins/dai.svg";
-import binanceURL from "../../assets/coins/binance.svg";
+// import binanceURL from "../../assets/coins/binance.svg";
 import ChainLinkToken from '../../abis/ChainLinkToken.json'
 import USDTToken from '../../abis/USDTToken.json';
 import DaiToken from '../../abis/DaiToken.json'
@@ -22,7 +22,6 @@ else if (hrs >= 17 && hrs <= 24)
     greet = 'Evening';
 
 const Dashboard = () => {
-    const [account, setaccount] = useState('')
     const [loading, setloading] = useState(true);
     const [database, setdatabase] = useState([])
     useEffect(async () => {
@@ -47,40 +46,7 @@ const Dashboard = () => {
     async function loadBlockchainData() {
         const web3 = window.web3
         const accounts = await web3.eth.getAccounts()
-        setaccount(accounts[0]);
-        //DAI TOKEN CALLING ------------------------------------------------
-
-        // const daiTokenAddress = "0xBbe9c58120a4a37afcf68A0cFC45F4C66C7FC606" // Replace DAI Address Here
-        // const tokenValue = new web3.eth.Contract(tokenValue.abi, daiTokenAddress)
-        // this.setState({ tokenValue: tokenValue })
-        // const balance = await tokenValue.methods.balanceOf(this.state.account).call()
-        // console.log(balance.toString());
-        // this.setState({ balance: web3.utils.fromWei(balance.toString(), 'Ether') })
-        // const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: this.state.account } })
-        // this.setState({ transactions: transactions })
-        // console.log(transactions)
-
-        //USDT TOKEN CALLING ------ 
-
-        // const usdtTokenAddress = "0x99f79a9B97b3fbf3E58bb71C1e45BDBd488cD41e"
-        // const tokenValue  = new web3.eth.Contract(USDTToken.abi,usdtTokenAddress);
-        // this.setState({tokenValue:tokenValue});
-        // const balance = await tokenValue.methods.balanceOf(this.state.account).call()
-        // this.setState({ balance: web3.utils.fromWei(balance.toString(), 'Ether') })
-        // const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: this.state.account } })
-        // this.setState({ transactions: transactions })
-        // console.log(transactions)
-
-        //ChainLink Token CALLING ---- 
-        // const chainLinkAddress = "0x21DF27FA2948C2A0bFFBE3195A1258e771446f12"
-        // const tokenValue  = new web3.eth.Contract(ChainLinkToken.abi,chainLinkAddress);
-        // settoken(tokenValue);
-        // const balance = await tokenValue.methods.balanceOf(this.state.account).call()
-        // this.setState({ balance: web3.utils.fromWei(balance.toString(), 'Ether') })
-        // const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: this.state.account } })
-        // this.setState({ transactions: transactions })
-        // console.log(transactions)
-        console.log('Going for address');
+    
         const addressEs = {
             'USDTToken': '0x330646231f76B45157cBBaC7cf03Dd0d13378529',
             'ChainLinkToken': '0x271F04D083359703ED22DaeBdf99cEfA05Cc6E70',
@@ -126,31 +92,26 @@ const Dashboard = () => {
             const obj = tempDatabase[3-count];
             const tokenAddress = addressEs[address];
             var tokenValue = ''
-            if (address == 'ChainLinkToken') { tokenValue = new web3.eth.Contract(ChainLinkToken.abi, tokenAddress); }
-            else if (address == 'USDTToken') { tokenValue = new web3.eth.Contract(USDTToken.abi, tokenAddress); }
-            else if (address == 'DaiToken') { tokenValue = new web3.eth.Contract(DaiToken.abi, tokenAddress); }
-            // console.log('Got the token');
-            // console.log(tokenValue);
-            // console.log(accounts[0]);
+            if (address === 'ChainLinkToken') { 
+                tokenValue = new web3.eth.Contract(ChainLinkToken.abi, tokenAddress); 
+            }
+            else if (address === 'USDTToken') { 
+                tokenValue = new web3.eth.Contract(USDTToken.abi, tokenAddress); 
+            }
+            else if (address === 'DaiToken') { 
+                tokenValue = new web3.eth.Contract(DaiToken.abi, tokenAddress); 
+            }
             const balance = await tokenValue.methods.balanceOf(accounts[0]).call()
-            // console.log(balance);
             console.log(web3.utils.fromWei(balance.toString(), 'Ether'));
             obj.balance = web3.utils.fromWei(balance.toString(), 'Ether');
-            // this.setState({ balance: web3.utils.fromWei(balance.toString(), 'Ether') })
             const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: accounts[0] } })
             obj.history = transactions;
-            // this.setState({ transactions: transactions })
             console.log(transactions);
             count--;
         }
         setloading(false)
         setdatabase(tempDatabase)
     }
-
-    const transfer = (recipient, amount) => {
-        this.state.tokenValue.methods.transfer(recipient, amount).send({ from: account })
-    }
-    
 
     return (
         <Fragment>

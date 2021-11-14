@@ -1,13 +1,18 @@
 import React, { Fragment, useState } from 'react';
-import { Routes, Link, Route } from 'react-router-dom';
+import { Routes, Link, Route, useLocation } from 'react-router-dom';
 
 // To Be Removed After Styling 
-import tetherURL from "../../assets/coins/tether.svg";
+// import tetherURL from "../../assets/coins/tether.svg";
 
 import Header from '../../components/Header/Header';
 import "./CoinWallet.css";
 
-const CoinWallet = (data) => {
+const CoinWallet = () => {
+
+    const [data, setdata] = useState('');
+    let location = useLocation();
+    setdata(location.state);
+    console.log(data);
 
     const [address, setAddress] = useState("");
     const [amount, setAmount] = useState("");
@@ -25,7 +30,7 @@ const CoinWallet = (data) => {
                         <Routes>
                             <Route path="/" element={
                                 <div className="Wallet_Section">
-                                    {/* <div className="Wallet_Card">
+                                    <div className="Wallet_Card">
                                         <p>Balance</p>
                                         <p className="balance_amount">{data.balance} {data.notation}</p>
                                         <p className="circles">
@@ -37,10 +42,10 @@ const CoinWallet = (data) => {
                                             <img src={data.image} alt="Coin Logo"/>
                                             <label>{data.name}</label>
                                         </figure>
-                                    </div> */}
+                                    </div>
                                     
                                     
-                                    <div className="Wallet_Card">
+                                    {/* <div className="Wallet_Card">
                                         <p>Balance</p>
                                         <p className="balance_amount">7384.7348 USDT</p>
                                         <p className="circles">
@@ -51,7 +56,7 @@ const CoinWallet = (data) => {
                                         <figure>
                                             <img src={tetherURL} alt="Coin Logo"/>
                                         </figure>
-                                    </div>
+                                    </div> */}
 
 
                                     <div className="send_money">
