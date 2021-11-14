@@ -1,22 +1,19 @@
 import React, { Fragment, useState,useEffect } from 'react';
 import { Routes, Link, Route } from 'react-router-dom';
 import USDTToken from '../../abis/USDTToken.json';
-import ChainLinkToken from '../../abis/ChainLinkToken.json';
-import DaiToken from '../../abis/DaiToken.json';
 // To Be Removed After Styling 
 import tetherURL from "../../assets/coins/tether.svg";
 import Header from '../../components/Header/Header';
 import Web3 from 'web3';
 import "./CoinWallet.css";
 
-const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
+const CoinWallet = () =>
 {
     const [Balance, setBalance] = useState('');
     const [Transactions, setTransactions] = useState([]);
     const [address, setAddress] = useState('');
     const [amount, setAmount] = useState('')
     useEffect( async () => {
-        console.log(tempDataCarrier);
         await loadWeb3();
         await loadBlockchainData();
     }, [])
@@ -37,19 +34,8 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
     async function loadBlockchainData() {
         const web3 = window.web3;
         const accounts = await web3.eth.getAccounts();
-        // const tokenAddress = '0x330646231f76B45157cBBaC7cf03Dd0d13378529';
-        const tokenAddress = tempDataCarrier.addressOf
-        var tokenValue = '';
-        if (tempDataCarrier.notation === 'LINK') { 
-            tokenValue = new web3.eth.Contract(ChainLinkToken.abi, tokenAddress); 
-        }
-        else if (tempDataCarrier.notation === 'USDT') { 
-            tokenValue = new web3.eth.Contract(USDTToken.abi, tokenAddress); 
-        }
-        else if (tempDataCarrier.notation === 'DAI') { 
-            tokenValue = new web3.eth.Contract(DaiToken.abi, tokenAddress); 
-        }
-        
+        const tokenAddress = '0x330646231f76B45157cBBaC7cf03Dd0d13378529';
+        const tokenValue = new web3.eth.Contract(USDTToken.abi, tokenAddress); 
         const balance = await tokenValue.methods.balanceOf(accounts[0]).call()
         setBalance(web3.utils.fromWei(balance.toString(), 'Ether'))
         const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: accounts[0] } })
@@ -71,7 +57,7 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
                                 <div className="Wallet_Section">
                                     <div className="Wallet_Card">
                                         <p>Balance</p>
-                                        <p className="balance_amount">{Balance} {tempDataCarrier.notation}</p>
+                                        <p className="balance_amount">{Balance} USDT</p>
                                         <p className="circles">
                                             <span style={{ backgroundColor: "red" }}></span>
                                             <span style={{ backgroundColor: "yellow" }}></span>
@@ -110,6 +96,12 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
                                         <p>Amount - </p>
                                         <p>Address - </p>
                                     </div>
+                                    {/* <div className="history_card">
+                                        <p className="credit">Recieved</p>
+                                        <p>Amount - </p>
+                                        <p>Address - </p>
+                                    </div> */}
+
                                     { Transactions.map(transaction => (
                                             <div className="history_card">
                                                 {transaction.sent ? <p className="credit">Recieved</p> : <p className="debit">Sent</p>}

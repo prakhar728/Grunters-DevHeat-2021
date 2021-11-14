@@ -21,7 +21,7 @@ else if (hrs >= 12 && hrs <= 17)
 else if (hrs >= 17 && hrs <= 24)
     greet = 'Evening';
 
-const Dashboard = () => {
+const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
     const [loading, setloading] = useState(true);
     const [database, setdatabase] = useState([])
     useEffect(async () => {
@@ -55,6 +55,7 @@ const Dashboard = () => {
         const tempDatabase = [
             {
                 id: 1,
+                addressOf:'0x330646231f76B45157cBBaC7cf03Dd0d13378529',
                 name: "Tether",
                 notation: "USDT",
                 image: tetherURL,
@@ -63,6 +64,7 @@ const Dashboard = () => {
             },
             {
                 id: 2,
+                addressOf:'0x271F04D083359703ED22DaeBdf99cEfA05Cc6E70',
                 name: "Chainlink",
                 notation: "LINK",
                 image: chainlinkURL,
@@ -71,6 +73,7 @@ const Dashboard = () => {
             },
             {
                 id: 3,
+                addressOf:'0xAA261f77C467704840462C86003661ae494B7B1A',
                 name: "DAI Coin",
                 notation: "DAI",
                 image: daiURL,
@@ -118,7 +121,10 @@ const Dashboard = () => {
                             <Link to={{
                                 pathname: `/wallet:${data.notation}`,
                                 state: data
-                            }} key={data.id}>
+                            }} key={data.id} onClick={()=>{
+                                settempDataCarrier(data)
+                                // console.log(data);
+                            }} >
                                 <div className="dashboard_grid_coin" key={data.id}>
                                     <figure>
                                         <img src={data.image} alt="" />

@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import { Routes, Link, Route, useLocation } from 'react-router-dom';
+import React, { Fragment, useState,useEffect } from 'react';
+import { Routes, Link, Route } from 'react-router-dom';
 import USDTToken from '../../abis/USDTToken.json';
 // To Be Removed After Styling 
 import tetherURL from "../../assets/coins/tether.svg";
@@ -10,9 +10,10 @@ import "./CoinWallet.css";
 const CoinWallet = () =>
 {
     const [Balance, setBalance] = useState('');
-    const [Transactions, setTransactions] = useState('');
-
-    useEffect(() => {
+    const [Transactions, setTransactions] = useState([]);
+    const [address, setAddress] = useState('');
+    const [amount, setAmount] = useState('')
+    useEffect( async () => {
         await loadWeb3();
         await loadBlockchainData();
     }, [])
@@ -54,24 +55,9 @@ const CoinWallet = () =>
                         <Routes>
                             <Route path="/" element={
                                 <div className="Wallet_Section">
-                                    {/* <div className="Wallet_Card">
-                                        <p>Balance</p>
-                                        <p className="balance_amount">{data.balance} {data.notation}</p>
-                                        <p className="circles">
-                                            <span style={{backgroundColor: "red"}}></span>
-                                            <span style={{backgroundColor: "yellow"}}></span>
-                                            <span style={{backgroundColor: "green"}}></span>
-                                        </p>
-                                        <figure>
-                                            <img src={data.image} alt="Coin Logo"/>
-                                            <label>{data.name}</label>
-                                        </figure>
-                                    </div>
-                                     */}
-
                                     <div className="Wallet_Card">
                                         <p>Balance</p>
-                                        <p className="balance_amount">{balance} USDT</p>
+                                        <p className="balance_amount">{Balance} USDT</p>
                                         <p className="circles">
                                             <span style={{ backgroundColor: "red" }}></span>
                                             <span style={{ backgroundColor: "yellow" }}></span>
