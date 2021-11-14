@@ -18,7 +18,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
                 <Route path="/wallet/*" element={<CoinWallet/>}></Route>
                 <Route path="/error" element={<Error/>}></Route>
-                <Route component={Error}/>
+                <Route path="*" element={<Error/>}/>
             </Routes>
         </Router>
     );

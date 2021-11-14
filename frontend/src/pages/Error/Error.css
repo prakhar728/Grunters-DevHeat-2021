@@ -1,0 +1,16 @@
+.Error {
+    height: 80vh;
+}
+.Error .illustration {
+    background-image: url('../../assets/illustration/error.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    height: 240px;
+    width: 100%;
+}
+.Error p {
+    padding: 24px 0;
+    color: var(--primary-light-alpha);
+}
