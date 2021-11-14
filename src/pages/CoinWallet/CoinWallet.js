@@ -124,8 +124,8 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
                                     { Transactions.map(transaction => (
                                             <div className="history_card">
                                                 {<p className="debit">Sent</p>}
-                                                <p>Amount - {transaction.returnValues.to}</p>
-                                                <p>Address - {window.web3.utils.fromWei(transaction.returnValues.value.toString(), 'Ether')}</p>
+                                                <p>Address - {transaction.returnValues.to}</p>
+                                                <p>Amount - {window.web3.utils.fromWei(transaction.returnValues.value.toString(), 'Ether')}</p>
                                             </div>
                                         ))
                                     }
