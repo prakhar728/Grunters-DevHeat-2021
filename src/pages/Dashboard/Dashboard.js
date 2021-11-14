@@ -24,12 +24,15 @@ else if (hrs >= 17 && hrs <= 24)
 const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
     const [loading, setloading] = useState(true);
     const [database, setdatabase] = useState([])
-    useEffect(async () => {
+    useEffect( () => {
+       getBlockChainReady();
+    }, [])
+
+    async function getBlockChainReady(){
         await loadWeb3();
 
         await loadBlockchainData();
-    }, [])
-
+    }
     async function loadWeb3() {
         if (window.ethereum) {
             window.web3 = new Web3(window.ethereum)

@@ -1,5 +1,5 @@
 import React, { Fragment, useState,useEffect } from 'react';
-import { Routes, Link, Route } from 'react-router-dom';
+import { Routes, Link, Route } from 'react-router-dom';import { useHistory } from "react-router-dom";
 import USDTToken from '../../abis/USDTToken.json';
 import ChainLinkToken from '../../abis/ChainLinkToken.json';
 import DaiToken from '../../abis/DaiToken.json';
@@ -11,16 +11,27 @@ import "./CoinWallet.css";
 
 const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
 {
+    let history = useHistory();
     const [Balance, setBalance] = useState('');
     const [Transactions, setTransactions] = useState([]);
     const [address, setAddress] = useState('');
     const [amount, setAmount] = useState('')
+    const [tokenType, settokenType] = useState('');
+    const [currentAddress, setcurrentAddress] = useState('')
     useEffect( async () => {
         console.log(tempDataCarrier);
         await loadWeb3();
         await loadBlockchainData();
     }, [])
-    
+    const handleClick = (e) =>{
+        e.preventDefault();
+        console.log(address,amount);
+        console.log(); 
+        // tokenType.methods.transfer(address, (parseInt(amount)*(10^18))).send({ from: currentAddress });
+        // window.web3.utils.toWei(this.amount.value, 'Ether')
+        tokenType.methods.transfer(address, window.web3.utils.toWei(amount, 'Ether')).send({ from: currentAddress });
+        
+    }
     async function loadWeb3() {
         if (window.ethereum) {
             window.web3 = new Web3(window.ethereum)
@@ -37,6 +48,7 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
     async function loadBlockchainData() {
         const web3 = window.web3;
         const accounts = await web3.eth.getAccounts();
+        setcurrentAddress(accounts[0]);
         // const tokenAddress = '0x330646231f76B45157cBBaC7cf03Dd0d13378529';
         const tokenAddress = tempDataCarrier.addressOf
         var tokenValue = '';
@@ -49,7 +61,7 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
         else if (tempDataCarrier.notation === 'DAI') { 
             tokenValue = new web3.eth.Contract(DaiToken.abi, tokenAddress); 
         }
-        
+        settokenType(tokenValue)
         const balance = await tokenValue.methods.balanceOf(accounts[0]).call()
         setBalance(web3.utils.fromWei(balance.toString(), 'Ether'))
         const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: accounts[0] } })
@@ -94,7 +106,7 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
                                                 <p><input type="number" value={amount} onChange={e => setAmount(e.target.value)} /></p>
                                             </div>
                                             <div className="btn_container">
-                                                <button className="btn">SEND</button>
+                                                <button className="btn" onClick={handleClick}>SEND</button>
                                             </div>
                                         </form>
                                     </div>
@@ -105,16 +117,16 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
                                 // Dummy Data
 
                                 <div className="History">
-                                    <div className="history_card">
+                                    {/* <div className="history_card">
                                         <p className="debit">Sent</p>
                                         <p>Amount - </p>
                                         <p>Address - </p>
-                                    </div>
+                                    </div> */}
                                     { Transactions.map(transaction => (
                                             <div className="history_card">
-                                                {transaction.sent ? <p className="credit">Recieved</p> : <p className="debit">Sent</p>}
-                                                <p>Amount - {transaction.amount}</p>
-                                                <p>Address - {transaction.address}</p>
+                                                {<p className="debit">Sent</p>}
+                                                <p>Amount - {transaction.returnValues.to}</p>
+                                                <p>Address - {window.web3.utils.fromWei(transaction.returnValues.value.toString(), 'Ether')}</p>
                                             </div>
                                         ))
                                     }
