@@ -77,15 +77,7 @@ const Dashboard = () => {
                 balance: "12.45",
                 history: []
             }
-            // ,
-            // {
-            //     id: 4,
-            //     name: "Binance Coin",
-            //     notation: "BNB",
-            //     image: binanceURL,
-            //     balance: "12.45",
-            //     history: []
-            // }
+           
         ];
         var count = 3;
         for (const address in addressEs) {
