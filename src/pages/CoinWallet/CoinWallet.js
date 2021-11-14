@@ -1,5 +1,5 @@
 import React, { Fragment, useState,useEffect } from 'react';
-import { Routes, Link, Route } from 'react-router-dom';import { useHistory } from "react-router-dom";
+import { Routes, Link, Route } from 'react-router-dom';
 import USDTToken from '../../abis/USDTToken.json';
 import ChainLinkToken from '../../abis/ChainLinkToken.json';
 import DaiToken from '../../abis/DaiToken.json';
@@ -8,10 +8,11 @@ import tetherURL from "../../assets/coins/tether.svg";
 import Header from '../../components/Header/Header';
 import Web3 from 'web3';
 import "./CoinWallet.css";
-
+import { useNavigate } from 'react-router-dom';
 const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
 {
-    let history = useHistory();
+    let navigate = useNavigate();
+
     const [Balance, setBalance] = useState('');
     const [Transactions, setTransactions] = useState([]);
     const [address, setAddress] = useState('');
@@ -23,14 +24,14 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
         await loadWeb3();
         await loadBlockchainData();
     }, [])
-    const handleClick = (e) =>{
+    const handleClick = async (e) =>{
         e.preventDefault();
         console.log(address,amount);
         console.log(); 
         // tokenType.methods.transfer(address, (parseInt(amount)*(10^18))).send({ from: currentAddress });
         // window.web3.utils.toWei(this.amount.value, 'Ether')
-        tokenType.methods.transfer(address, window.web3.utils.toWei(amount, 'Ether')).send({ from: currentAddress });
-        
+        tokenType.methods.transfer(address, window.web3.utils.toWei(amount, 'Ether')).send({ from: currentAddress })
+        setBalance(Balance-amount)
     }
     async function loadWeb3() {
         if (window.ethereum) {
