@@ -8,10 +8,8 @@ import tetherURL from "../../assets/coins/tether.svg";
 import Header from '../../components/Header/Header';
 import Web3 from 'web3';
 import "./CoinWallet.css";
-import { useNavigate } from 'react-router-dom';
 const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
 {
-    let navigate = useNavigate();
 
     const [Balance, setBalance] = useState('');
     const [Transactions, setTransactions] = useState([]);
