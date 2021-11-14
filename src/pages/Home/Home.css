@@ -1,0 +1,136 @@
+.Home {
+    color: var(--primary-light-alpha);
+}
+.Home .landing {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+.Home .landing h1 {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 16px;
+    
+}
+.Home .landing p {
+    font-size: 18px;
+    text-align: left;
+}
+.Home .landing .landing_illustration {
+    background-image: url('../../assets/illustration/securecard.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 360px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* About */
+
+.Home .about {
+    padding: 48px 0;
+}
+.Home .about .about-heading {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+}
+.Home .about .about_grid {
+    padding: 24px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.Home .about .about_grid_reverse {
+    grid-auto-flow: dense;
+}
+
+.Home .about .about_grid h1 {
+    font-size: 24px;
+    padding: 24px 0;
+    color: var(--primary-color);
+}
+.Home .about .about_grid p {
+    font-size: 20px;
+}
+
+.Home .about .about_grid .illustration {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 360px;
+    width: 100%;
+}
+
+.Home .about .about_grid .illustration-1 {
+    background-image: url('../../assets/illustration/lock&key.png');
+}
+.Home .about .about_grid .illustration-2 {
+    background-image: url('../../assets/illustration/securityshield.png');
+}
+
+
+/* ---------- Footer ---------- */
+
+
+footer {
+    background-color: var(--primary-color);
+    padding: 48px 24px;
+}
+footer h1 {
+    text-align: center;
+    font-size: 36px;
+    padding-bottom: 36px;
+}
+footer .social_media {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 240px;
+}
+footer .social_media div {
+    font-size: 24px;
+    margin: 24px;
+    display: block;
+    padding: 9px 14px;
+    border: 1.5px solid var(--primary-dark-alpha);
+    border-radius: 3px;
+    height: 50px;
+    width: 50px;
+}
+
+
+@media (min-width: 720px) {
+    .Home .landing {
+        grid-template-columns: 1fr 1fr;
+    }
+    .Home .landing h1 {
+        font-size: 42px;   
+    }
+    .Home .landing p {
+        font-size: 24px;
+    }
+
+
+    .Home .about .about_grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .Home .about .about_grid_reverse {
+        grid-auto-flow: dense;
+    }
+    .Home .about .about_grid h1 {
+        font-size: 36px;
+    }
+    .Home .about .about_grid p {
+        font-size: 24px;
+    }
+}
