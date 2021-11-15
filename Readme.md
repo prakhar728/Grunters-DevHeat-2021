@@ -43,17 +43,24 @@ Here's a navigation Guide:
 
 ## RUN ON YOUR LOCAL MACHINE
 
-You need to have Truffle installed in your local Machine.
+1. You need to have Truffle installed in your local Machine.
 Configure the server to run on the `PORT NUMBER` 7545 and `NETWORK ID` 1337.
 
-In the Migrations files replace the current address where the tokens will be minted to, by the first address in the truffle workspace created(you can choose any address first is usually easier).
+2. In the Migrations files replace the current address where the tokens will be minted to, by the first address in the truffle workspace created(you can choose any address first is usually easier).
 
-Run `truffle compile` - to make sure all the files are compiled.
+3. Run `truffle compile` - to make sure all the files are compiled.
 
-Run `truffle migrate` - to migrate the contracts to the blockchain.
+4. Run `truffle migrate` - to migrate the contracts to the blockchain.
 
-Now from the abi files for ChainLinkToken, USDTToken, and DaiToken copy the address assigned and replace them in the file `Dashboard.js`.
+5. Now from the abi files for ChainLinkToken, USDTToken, and DaiToken copy the address assigned and replace them in the file `Dashboard.js`.
 
-Install all the web dependencies by running `npm i`.
+6. Install all the web dependencies by running `npm i`.
 
-You are all set. Run `npm start` and connect your metamask wallet to get started with the dapp.
+7. You are all set. Run `npm start` and connect your metamask wallet to get started with the dapp.
+
+### POINT FOR THE MENTORS 
+
+The app might give a few plagiarism checks since me and my teammate use Templates to get started and not write the code from scratch. We usually use a specific part of react files to get started with the dependencies a lot easier and faster. Rest assured none of the code has been copied from somewhere though it might match with some other code online because all that was learned was through tutorial and the best practices are common with some youtubers.
+
+
+# VIEW THE VIDEO [HERE](https://www.youtube.com/watch?v=QHXZJbxrzPc&feature=youtu.be)
