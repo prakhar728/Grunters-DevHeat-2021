@@ -51,14 +51,14 @@ const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
         const accounts = await web3.eth.getAccounts()
     
         const addressEs = {
-            'USDTToken': '0x330646231f76B45157cBBaC7cf03Dd0d13378529',
-            'ChainLinkToken': '0x271F04D083359703ED22DaeBdf99cEfA05Cc6E70',
-            'DaiToken': '0xAA261f77C467704840462C86003661ae494B7B1A'
+            'USDTToken': '0xF5F456E42f4882AB7efC32E57165ab7Dce53B164',
+            'ChainLinkToken': '0x8b95eDFDD161e759764A7fc329EBB42DA73aE777',
+            'DaiToken': '0x014A8676F1f9d019E98569d4Bd2220cc8a55dFAb'
         }
         const tempDatabase = [
             {
                 id: 1,
-                addressOf:'0x330646231f76B45157cBBaC7cf03Dd0d13378529',
+                addressOf:'0xF5F456E42f4882AB7efC32E57165ab7Dce53B164',
                 name: "Tether",
                 notation: "USDT",
                 image: tetherURL,
@@ -67,7 +67,7 @@ const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
             },
             {
                 id: 2,
-                addressOf:'0x271F04D083359703ED22DaeBdf99cEfA05Cc6E70',
+                addressOf:'0x8b95eDFDD161e759764A7fc329EBB42DA73aE777',
                 name: "Chainlink",
                 notation: "LINK",
                 image: chainlinkURL,
@@ -76,7 +76,7 @@ const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
             },
             {
                 id: 3,
-                addressOf:'0xAA261f77C467704840462C86003661ae494B7B1A',
+                addressOf:'0x014A8676F1f9d019E98569d4Bd2220cc8a55dFAb',
                 name: "DAI Coin",
                 notation: "DAI",
                 image: daiURL,
@@ -100,8 +100,10 @@ const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
                 tokenValue = new web3.eth.Contract(DaiToken.abi, tokenAddress); 
             }
             const balance = await tokenValue.methods.balanceOf(accounts[0]).call()
-            console.log(web3.utils.fromWei(balance.toString(), 'Ether'));
+            if(balance)
             obj.balance = web3.utils.fromWei(balance.toString(), 'Ether');
+            else
+            obj.balance=0;
             const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: accounts[0] } })
             obj.history = transactions;
             console.log(transactions);

@@ -62,7 +62,10 @@ const CoinWallet = ({tempDataCarrier,settempDataCarrier}) =>
         }
         settokenType(tokenValue)
         const balance = await tokenValue.methods.balanceOf(accounts[0]).call()
+        if(balance)
         setBalance(web3.utils.fromWei(balance.toString(), 'Ether'))
+            else
+        setBalance(0)
         const transactions = await tokenValue.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: accounts[0] } })
         setTransactions(transactions);
     }

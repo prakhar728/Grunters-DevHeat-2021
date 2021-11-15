@@ -6,7 +6,7 @@ module.exports = async function(deployer){
     const chainLink = await ChainLinkToken.deployed()
 
     await chainLink.mint(
-        '0xD219d8ed431d8b4962C4Ede6f44a75a3fB046C7E',
+        '0xEB7ADeC0dd96126d1f0C789d67a8aEa5f23843f5',
         '1000000000000000000000'
     )
 }
