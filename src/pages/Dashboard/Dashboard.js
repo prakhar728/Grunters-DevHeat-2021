@@ -49,12 +49,14 @@ const Dashboard = ({tempDataCarrier,settempDataCarrier}) => {
     async function loadBlockchainData() {
         const web3 = window.web3
         const accounts = await web3.eth.getAccounts()
-    
+
+        //REPLACE WITH ADDRESS GENERATED AFTER RUNNING TRUFFLE MIGRATE
         const addressEs = {
             'USDTToken': '0xF5F456E42f4882AB7efC32E57165ab7Dce53B164',
             'ChainLinkToken': '0x8b95eDFDD161e759764A7fc329EBB42DA73aE777',
             'DaiToken': '0x014A8676F1f9d019E98569d4Bd2220cc8a55dFAb'
         }
+        //REPLACE WITH ADDRESS GENERATED AFTER RUNNING TRUFFLE MIGRATE
         const tempDatabase = [
             {
                 id: 1,
